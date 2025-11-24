@@ -439,7 +439,7 @@ export default function TugasPage({ initialData }: { initialData: Tugas[] }) {
               )}
 
               <Button
-                className="bg-yellow-400 px-2 py-1 h-7 lg:h-10"
+                className="bg-yellow-400 text-background hover:bg-background hover:text-yellow-400 px-2 py-1 h-7 lg:h-10"
                 onClick={() => {
                   setEditing(t);
                   setEditNama(t.nama);
@@ -453,7 +453,7 @@ export default function TugasPage({ initialData }: { initialData: Tugas[] }) {
               </Button>
 
               <Button
-                className="bg-red-600 text-white px-2 py-1 h-7 lg:h-10"
+                className="bg-red-600 text-background hover:text-red-600 hover:bg-background px-2 py-1 h-7 lg:h-10"
                 onClick={() => handleDelete(t.id)}
               >
                 Delete

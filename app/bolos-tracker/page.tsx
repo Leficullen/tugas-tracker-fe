@@ -11,7 +11,7 @@ import Loading from "@/components/loading";
 
 
 export default function BolosPage() {
-  const userId = "user123"; // ganti nanti setelah punya auth
+  const userId = "user123"; 
 
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());
@@ -67,7 +67,8 @@ export default function BolosPage() {
       showSuccess("Presensi berhasil!");
         load();
       } catch (err: any) {
-        showError("Anda berada di luar Fasilkom!");
+        console.error(err.message)
+        showError("Gagal");
       }
     });
   }

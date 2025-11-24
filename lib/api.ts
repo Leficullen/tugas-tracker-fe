@@ -8,7 +8,7 @@ export async function request(path: string, options: RequestInit = {}) {
 
   const res = await fetch(`${BASE_URL}${path}`, {   
     ...options,
-    headers: {
+    headers: {  
       "Content-Type": "application/json",
       "x-api-key" : API_KEY, // 🔥 FIX PALING PENTING
       ...(options.headers || {}),

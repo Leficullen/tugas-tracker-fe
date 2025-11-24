@@ -122,7 +122,7 @@ export default function MatkulPage({ initialData }: { initialData: Matkul[] }) {
           className={`text-h4 text-background items-center justify-center fixed inset-0 flex flex-col w-fit h-fit px-5 py-3 mx-auto my-auto rounded-md ${
             messageType === "success" ? "bg-green-600" : "bg-red-600"
           } ${
-            message ? "scale-100" : "scale-0"
+            message ? "scale-100 opacity-100" : "opacity-0 scale-0"
           } smooth transition-all duration-300`}
         >
           <h3>{message}</h3>
@@ -228,14 +228,14 @@ export default function MatkulPage({ initialData }: { initialData: Matkul[] }) {
             key={m.id}
             className="flex justify-between border-2 py-3 px-5 rounded-lg hover:border-primary/70 transition-all ease-in duration-100"
           >
-            <div className="flex lg:flex-row flex-col lg:justify-between lg:items-center">
+            <div className="flex lg:grid grid-cols-[70%_30%] flex-col lg:justify-between lg:items-center my-auto">
               <div>
                 <p className="font-bold">{m.nama}</p>
                 <p>SKS: {m.sks}</p>
-                <p>Deskripsi: {m.deskripsi}</p>
+                <p className="">Deskripsi: {m.deskripsi}</p>
               </div>
 
-              <div className="space-x-2 lg:mt-0 mt-2">
+              <div className="space-x-2 lg:mt-0 mt-2 flex justify-end items-center">
                 <Button
                   className="bg-yellow-400 px-2 lg:py-1 h-7 lg:h-10"
                   onClick={() => {
