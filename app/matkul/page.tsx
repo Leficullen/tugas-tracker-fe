@@ -119,7 +119,7 @@ export default function MatkulPage({ initialData }: { initialData: Matkul[] }) {
 
       {message && (
         <div
-          className={`text-h3 font-semibold text-background items-center justify-center fixed inset-0 flex flex-col w-fit h-fit px-5 py-3 mx-auto my-auto rounded-md ${
+          className={`text-h4 text-background items-center justify-center fixed inset-0 flex flex-col w-fit h-fit px-5 py-3 mx-auto my-auto rounded-md ${
             messageType === "success" ? "bg-green-600" : "bg-red-600"
           } ${
             message ? "scale-100" : "scale-0"

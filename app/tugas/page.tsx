@@ -233,7 +233,7 @@ export default function TugasPage({ initialData }: { initialData: Tugas[] }) {
           <h3>{message}</h3>
         </div>
       )}
-      <h1 className="text-h1 text-primary text-center font-bold">
+      <h1 className="text-h1 text-primary lg:text-start text-center font-bold">
         Manajemen Tugas
       </h1>
 

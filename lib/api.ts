@@ -1,15 +1,16 @@
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL!;
 export const API_KEY = process.env.NEXT_PUBLIC_API_KEY!;
 
+// Wrapper untuk semua request ke backend
 export async function request(path: string, options: RequestInit = {}) {
   console.log("SENDING:", BASE_URL + path);
   console.log("API KEY:", API_KEY);
 
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const res = await fetch(`${BASE_URL}${path}`, {   
     ...options,
     headers: {
       "Content-Type": "application/json",
-      "x-api-key": API_KEY,
+      "x-api-key" : API_KEY, // 🔥 FIX PALING PENTING
       ...(options.headers || {}),
     },
     cache: "no-store",
@@ -23,17 +24,16 @@ export async function request(path: string, options: RequestInit = {}) {
   return res.json();
 }
 
-//GET ALL MATKUL
+//  MATA KULIAH
+
 export async function getMatkul() {
   return request("/matkul");
 }
 
-//GET MATKUL BY ID
 export async function getMatkulById(id: string) {
   return request(`/matkul/${id}`);
 }
 
-//CREATE MATKUL
 export async function createMatkul(data: any) {
   return request("/matkul", {
     method: "POST",
@@ -41,7 +41,6 @@ export async function createMatkul(data: any) {
   });
 }
 
-//UPDATE MATKUL BY ID
 export async function updateMatkul(id: string, data: any) {
   return request(`/matkul/${id}`, {
     method: "PUT",
@@ -49,28 +48,22 @@ export async function updateMatkul(id: string, data: any) {
   });
 }
 
-//DELETE MATKUL BY ID
 export async function deleteMatkul(id: string) {
   return request(`/matkul/${id}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": API_KEY,
-    },
   });
 }
 
-//TUGAS API
+//  TUGAS
+
 export async function getTugas() {
   return request("/tugas");
 }
 
-//GET TUGAS BY ID
 export async function getTugasById(id: string) {
   return request(`/tugas/${id}`);
 }
 
-//CREATE TUGAS
 export async function createTugas(data: any) {
   return request("/tugas", {
     method: "POST",
@@ -78,7 +71,6 @@ export async function createTugas(data: any) {
   });
 }
 
-//UPDATE TUGAS BY ID
 export async function updateTugas(id: string, data: any) {
   return request(`/tugas/${id}`, {
     method: "PUT",
@@ -86,7 +78,6 @@ export async function updateTugas(id: string, data: any) {
   });
 }
 
-//DELETE TUGAS BY ID
 export async function deleteTugas(id: string) {
   return request(`/tugas/${id}`, {
     method: "DELETE",
@@ -94,20 +85,22 @@ export async function deleteTugas(id: string) {
 }
 
 
-//BOLOS TREKERRRR
+
+//  BOLOS TRACKER (Attendance)
+
 export function getMonthAttendance(userId: string, month: string) {
-  return request(`/api/attendance/month?userId=${userId}&month=${month}`);
+  return request(`/attendance/month?userId=${userId}&month=${month}`);
 }
 
 export function presensi(userId: string, lat: number, lng: number) {
-  return request(`/api/attendance/present`, {
+  return request(`/attendance/present`, {
     method: "POST",
     body: JSON.stringify({ userId, lat, lng }),
   });
 }
 
 export function izin(userId: string, reason: string) {
-  return request(`/api/attendance/izin`, {
+  return request(`/attendance/izin`, {
     method: "POST",
     body: JSON.stringify({ userId, reason }),
   });
