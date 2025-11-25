@@ -59,9 +59,11 @@ export default function BolosPage() {
   }, [month, year]);
 
   async function handlePresensi() {
+    setLoading(true)
     if (!navigator.geolocation) return showError("Lokasi tidak didukung.");
 
     navigator.geolocation.getCurrentPosition(async (pos) => {
+      setLoading(true)
       try {
         await presensi(userId, pos.coords.latitude, pos.coords.longitude);
       showSuccess("Presensi berhasil!");
@@ -70,10 +72,13 @@ export default function BolosPage() {
         console.error(err.message)
         showError("Gagal");
       }
+
     });
+    setLoading(false)
   }
 
   async function handleIzin(reason: string) {
+    setLoading(true)
     try {
       await izin(userId, reason);
       showSuccess("Izin terkirim");
@@ -82,6 +87,7 @@ export default function BolosPage() {
       showError("Gagal mengirim izin");
     }
     setIzinOpen(false);
+    setLoading(false)
   }
 
   function nextMonth() {
@@ -114,7 +120,7 @@ export default function BolosPage() {
     <div className="">
       {message && (
         <div
-          className={`text-h4 text-background items-center justify-center fixed inset-0 flex flex-col w-fit h-fit px-5 py-3 mx-auto my-auto rounded-md shadow-lg ${
+          className={`text-h4 text-background items-center justify-center fixed inset-0 flex flex-col w-fit h-fit px-5 py-3 mx-auto my-auto rounded-md shadow-lg z-100 ${
             messageType === "success" ? "bg-green-600" : "bg-red-600"
           } ${
             message ? "scale-100" : "scale-0"
