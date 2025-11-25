@@ -11,7 +11,7 @@ import Loading from "@/components/loading";
 
 
 export default function BolosPage() {
-  const userId = "user123"; 
+  const userId = "user123"; // ganti nanti setelah punya auth
 
   const today = new Date();
   const [year, setYear] = useState(today.getFullYear());

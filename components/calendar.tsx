@@ -7,6 +7,8 @@ interface Props {
   data: Record<number, DayStatus>;
 }
 
+
+
 export default function Calendar({ year, month, data }: Props) {
   const daysInMonth = new Date(year, month, 0).getDate();
 
